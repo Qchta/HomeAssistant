@@ -59,7 +59,7 @@ action:
 - variables:
     command: '{{ trigger.event.data.command }}'
     args: '{{ trigger.event.data.args }}'
-    data: '{{ trigger.event.data }}'
+    arg: '{{ trigger.event.data.args[0] }}'
 - choose:
   - conditions: '{{ command == ''off'' }}'
     sequence: !input 'button_one_short_press'
