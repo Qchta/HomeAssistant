@@ -58,18 +58,17 @@ trigger:
 action:
 - variables:
     command: '{{ trigger.event.data.command }}'
-    args: '{{ trigger.event.data.args }}'
     arg: '{{ trigger.event.data.args[0] }}'
 - choose:
   - conditions: '{{ command == ''off'' }}'
     sequence: !input 'button_one_short_press'
   - conditions: '{{ command == ''on'' }}'
     sequence: !input 'button_two_short_press'
-  - conditions: '{{  command == ''step'' and args == [0,51,10] }}'
+  - conditions: '{{  command == ''step'' and arg == StepMode.Up }}'
     sequence: !input 'button_three_short_press'
-  - conditions: '{{  command == ''step'' and args == [1,51,10] }}'
+  - conditions: '{{  command == ''step'' and arg == StepMode.Down }}'
     sequence: !input 'button_four_short_press'
-  - conditions: '{{ command == "move" and args == [0, 51,] }}'
+  - conditions: '{{ command == "move" and arg == MoveMode.Up }}'
     sequence: !input 'button_three_long_press'
-  - conditions: '{{ command == "move" and args == [1, 51,] }}'
+  - conditions: '{{ command == "move" and arg == MoveMode.Down }}'
     sequence: !input 'button_four_long_press'
